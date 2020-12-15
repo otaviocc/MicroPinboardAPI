@@ -1,7 +1,6 @@
 import Foundation
 
-public struct PostResponse: Decodable, Identifiable {
-    public var id = UUID()
+public struct PostResponse: Decodable {
     public let href: String
     public let description: String
     public let extended: String
