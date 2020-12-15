@@ -3,7 +3,8 @@ import Combine
 
 protocol TagsAPI {
 
-    /// Returns a full list of the user's tags along with the number of times they were used.
+    /// Returns a full list of the user's tags along with the number of
+    /// times they were used.
     func get(
     ) -> AnyPublisher<TagsGetResponse, Error>
 
