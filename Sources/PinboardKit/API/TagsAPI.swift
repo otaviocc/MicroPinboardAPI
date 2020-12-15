@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-protocol TagsAPI {
+public protocol TagsAPI {
 
     /// Returns a full list of the user's tags along with the number of
     /// times they were used.
@@ -24,7 +24,7 @@ extension PinboardAPI: TagsAPI {
 
     // MARK: - Public
 
-    func get(
+    public func get(
     ) -> AnyPublisher<TagsGetResponse, Error> {
         networkClient
             .run(makeGetRequest())
@@ -32,7 +32,7 @@ extension PinboardAPI: TagsAPI {
             .eraseToAnyPublisher()
     }
 
-    func delete(
+    public func delete(
         tag: String
     ) -> AnyPublisher<GenericResponse, Error> {
         networkClient
@@ -41,7 +41,7 @@ extension PinboardAPI: TagsAPI {
             .eraseToAnyPublisher()
     }
 
-    func rename(
+    public func rename(
         old: String,
         new: String
     ) -> AnyPublisher<GenericResponse, Error> {
