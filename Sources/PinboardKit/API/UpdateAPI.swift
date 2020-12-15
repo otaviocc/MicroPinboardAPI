@@ -29,7 +29,6 @@ extension PinboardAPI: UpdateAPI {
     private func makeUpdateRequest(
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/update"
         )
     }

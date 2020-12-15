@@ -56,7 +56,6 @@ extension PinboardAPI: TagsAPI {
     private func makeGetRequest(
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/tags/get"
         )
     }
@@ -65,7 +64,6 @@ extension PinboardAPI: TagsAPI {
         tag: String
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/tags/delete",
             queryItems: [
                 URLQueryItem(name: "tag", value: tag)
@@ -78,7 +76,6 @@ extension PinboardAPI: TagsAPI {
         new: String
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/tags/rename",
             queryItems: [
                 URLQueryItem(name: "old", value: old),

@@ -25,7 +25,6 @@ public struct PinboardAPI {
 extension PinboardAPI {
 
     func makeURLRequest(
-        method: String,
         path: String,
         queryItems: [URLQueryItem] = []
     ) -> URLRequest {
@@ -55,7 +54,7 @@ extension PinboardAPI {
         }
 
         var request = URLRequest(url: url)
-        request.httpMethod = method
+        request.httpMethod = "GET"
         return request
     }
 }

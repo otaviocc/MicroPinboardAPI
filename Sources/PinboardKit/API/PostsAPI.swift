@@ -178,7 +178,6 @@ extension PinboardAPI: PostsAPI {
         toread: String?
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/add",
             queryItems: [
                 URLQueryItem(name: "url", value: url.absoluteString),
@@ -197,7 +196,6 @@ extension PinboardAPI: PostsAPI {
         url: URL
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/delete",
             queryItems: [
                 URLQueryItem(name: "url", value: url.absoluteString)
@@ -212,7 +210,6 @@ extension PinboardAPI: PostsAPI {
         meta: String?
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/get",
             queryItems: [
                 URLQueryItem(name: "tag", value: tag),
@@ -227,7 +224,6 @@ extension PinboardAPI: PostsAPI {
         tag: String? = nil
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/dates",
             queryItems: [
                 URLQueryItem(name: "tag", value: tag)
@@ -240,7 +236,6 @@ extension PinboardAPI: PostsAPI {
         count: Int? = nil
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/recent",
             queryItems: [
                 URLQueryItem(name: "tag", value: tag),
@@ -258,7 +253,6 @@ extension PinboardAPI: PostsAPI {
         meta: Int? = nil
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/all",
             queryItems: [
                 URLQueryItem(name: "tag", value: tag),
@@ -275,7 +269,6 @@ extension PinboardAPI: PostsAPI {
         url: URL
     ) -> URLRequest {
         makeURLRequest(
-            method: "GET",
             path: "/v1/posts/suggest",
             queryItems: [
                 URLQueryItem(name: "url", value: url.absoluteString)
