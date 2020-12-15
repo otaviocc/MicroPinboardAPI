@@ -1,3 +1,3 @@
 import Foundation
 
-typealias TagsGetResponse = [String: Int]
+public typealias TagsGetResponse = [String: Int]
