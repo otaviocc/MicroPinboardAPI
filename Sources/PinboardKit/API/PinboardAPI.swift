@@ -28,7 +28,6 @@ extension PinboardAPI {
         queryItems: [URLQueryItem] = []
     ) -> URLRequest {
         .makeURLRequest(
-            host: "api.pinboard.in",
             path: path,
             queryItems: queryItems,
             authToken: authToken

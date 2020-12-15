@@ -2,8 +2,9 @@ import Foundation
 
 extension URLRequest {
 
+    /// Builds a Pinboard URLRequest. It appends the auth token and
+    /// json format.
     static func makeURLRequest(
-        host: String,
         path: String,
         queryItems: [URLQueryItem] = [],
         authToken: @escaping (() -> String?)
@@ -20,7 +21,7 @@ extension URLRequest {
 
         var components = URLComponents()
         components.scheme = "https"
-        components.host = host
+        components.host = "api.pinboard.in"
         components.path = path
         components.queryItems = queryItems
         components.queryItems?.append(
