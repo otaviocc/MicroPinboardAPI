@@ -9,7 +9,7 @@ public protocol PostsAPI {
         description: String,
         extended: String?,
         tags: String?,
-        dt: Date?,
+        date: Date?,
         replace: String?,
         shared: String?,
         toread: String?
@@ -23,7 +23,7 @@ public protocol PostsAPI {
     /// Returns one or more posts on a single day matching the arguments.
     func get(
         tag: String?,
-        dt: Date?,
+        date: Date?,
         url: URL?,
         meta: String?
     ) -> AnyPublisher<RecentResponse, Error>
@@ -44,8 +44,8 @@ public protocol PostsAPI {
         tag: String?,
         start: Int?,
         results: Int?,
-        fromdt: Date?,
-        todt: Date?,
+        fromDate: Date?,
+        toDate: Date?,
         meta: Int?
     ) -> AnyPublisher<RecentResponse, Error>
 
@@ -64,7 +64,7 @@ extension PinboardAPI: PostsAPI {
         description: String,
         extended: String? = nil,
         tags: String? = nil,
-        dt: Date? = nil,
+        date: Date? = nil,
         replace: String? = nil,
         shared: String? = nil,
         toread: String? = nil
@@ -76,7 +76,7 @@ extension PinboardAPI: PostsAPI {
                     description: description,
                     extended: extended,
                     tags: tags,
-                    dt: dt,
+                    date: date,
                     replace: replace,
                     shared: shared,
                     toread: toread
@@ -97,7 +97,7 @@ extension PinboardAPI: PostsAPI {
 
     public func get(
         tag: String? = nil,
-        dt: Date? = nil,
+        date: Date? = nil,
         url: URL? = nil,
         meta: String? = nil
     ) -> AnyPublisher<RecentResponse, Error> {
@@ -105,7 +105,7 @@ extension PinboardAPI: PostsAPI {
             .run(
                 makeGetRequest(
                     tag: tag,
-                    dt: dt,
+                    date: date,
                     url: url,
                     meta: meta
                 )
@@ -137,8 +137,8 @@ extension PinboardAPI: PostsAPI {
         tag: String?,
         start: Int?,
         results: Int?,
-        fromdt: Date?,
-        todt: Date?,
+        fromDate: Date?,
+        toDate: Date?,
         meta: Int?
     ) -> AnyPublisher<RecentResponse, Error> {
         networkClient
@@ -147,8 +147,8 @@ extension PinboardAPI: PostsAPI {
                     tag: tag,
                     start: start,
                     results: results,
-                    fromdt: fromdt,
-                    todt: todt,
+                    fromDate: fromDate,
+                    toDate: toDate,
                     meta: meta
                 )
             )
@@ -172,7 +172,7 @@ extension PinboardAPI: PostsAPI {
         description: String,
         extended: String?,
         tags: String?,
-        dt: Date?,
+        date: Date?,
         replace: String?,
         shared: String?,
         toread: String?
@@ -184,7 +184,10 @@ extension PinboardAPI: PostsAPI {
                 URLQueryItem(name: "description", value: description),
                 URLQueryItem(name: "extended", value: extended),
                 URLQueryItem(name: "tags", value: tags),
-                // URLQueryItem(name: "dt", value: tags),
+                URLQueryItem(
+                    name: "dt",
+                    value: date.map(apiDateFormatter.string(from:))
+                ),
                 URLQueryItem(name: "replace", value: replace),
                 URLQueryItem(name: "shared", value: shared),
                 URLQueryItem(name: "toread", value: toread)
@@ -205,7 +208,7 @@ extension PinboardAPI: PostsAPI {
 
     private func makeGetRequest(
         tag: String?,
-        dt: Date?,
+        date: Date?,
         url: URL?,
         meta: String?
     ) -> URLRequest {
@@ -213,7 +216,10 @@ extension PinboardAPI: PostsAPI {
             path: "/v1/posts/get",
             queryItems: [
                 URLQueryItem(name: "tag", value: tag),
-                // URLQueryItem(name: "dt", value: dt),
+                URLQueryItem(
+                    name: "dt",
+                    value: date.map(apiDateFormatter.string(from:))
+                ),
                 URLQueryItem(name: "url", value: url?.absoluteString),
                 URLQueryItem(name: "meta", value: meta)
             ]
@@ -248,8 +254,8 @@ extension PinboardAPI: PostsAPI {
         tag: String? = nil,
         start: Int? = nil,
         results: Int? = nil,
-        fromdt: Date? = nil,
-        todt: Date? = nil,
+        fromDate: Date? = nil,
+        toDate: Date? = nil,
         meta: Int? = nil
     ) -> URLRequest {
         makeURLRequest(
@@ -258,8 +264,14 @@ extension PinboardAPI: PostsAPI {
                 URLQueryItem(name: "tag", value: tag),
                 URLQueryItem(name: "start", value: start.map(String.init)),
                 URLQueryItem(name: "results", value: results.map(String.init)),
-                // URLQueryItem(name: "fromdt", value: fromdt),
-                // URLQueryItem(name: "todt", value: todt),
+                URLQueryItem(
+                    name: "fromdt",
+                    value: fromDate.map(apiDateFormatter.string(from:))
+                ),
+                URLQueryItem(
+                    name: "todt",
+                    value: toDate.map(apiDateFormatter.string(from:))
+                ),
                 URLQueryItem(name: "meta", value: meta.map(String.init))
             ]
         )

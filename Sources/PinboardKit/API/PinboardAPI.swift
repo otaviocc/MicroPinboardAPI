@@ -5,6 +5,7 @@ public struct PinboardAPI {
     // MARK: - Properties
 
     let networkClient: PinboardClient
+    let apiDateFormatter: DateFormatter
 
     private let authToken: (() -> String?)
 
@@ -14,6 +15,7 @@ public struct PinboardAPI {
         userToken: @escaping (() -> String?)
     ) {
         self.authToken = userToken
+        self.apiDateFormatter = .defaultAPIFormatter
         self.networkClient = PinboardClient(
             session: .shared,
             decoder: .defaultJSONDecoder
