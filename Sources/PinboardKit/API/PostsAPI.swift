@@ -134,12 +134,12 @@ extension PinboardAPI: PostsAPI {
     }
 
     public func all(
-        tag: String?,
-        start: Int?,
-        results: Int?,
-        fromDate: Date?,
-        toDate: Date?,
-        meta: Int?
+        tag: String? = nil,
+        start: Int? = nil,
+        results: Int? = nil,
+        fromDate: Date? = nil,
+        toDate: Date? = nil,
+        meta: Int? = nil
     ) -> AnyPublisher<RecentResponse, Error> {
         networkClient
             .run(
@@ -170,12 +170,12 @@ extension PinboardAPI: PostsAPI {
     private func makeAddRequest(
         url: URL,
         description: String,
-        extended: String?,
-        tags: String?,
-        date: Date?,
-        replace: String?,
-        shared: String?,
-        toread: String?
+        extended: String? = nil,
+        tags: String? = nil,
+        date: Date? = nil,
+        replace: String? = nil,
+        shared: String? = nil,
+        toread: String? = nil
     ) -> URLRequest {
         makeURLRequest(
             path: "/v1/posts/add",
@@ -207,10 +207,10 @@ extension PinboardAPI: PostsAPI {
     }
 
     private func makeGetRequest(
-        tag: String?,
-        date: Date?,
-        url: URL?,
-        meta: String?
+        tag: String? = nil,
+        date: Date? = nil,
+        url: URL? = nil,
+        meta: String? = nil
     ) -> URLRequest {
         makeURLRequest(
             path: "/v1/posts/get",
