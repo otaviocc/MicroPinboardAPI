@@ -14,6 +14,8 @@ struct PinboardClient {
 
     private let session: URLSession
     private let decoder: JSONDecoder
+    private let eventSubject =
+        PassthroughSubject<PinboardClientEvent, Never>()
 
     // MARK: - Life cycle
 
@@ -27,13 +29,23 @@ struct PinboardClient {
 
     // MARK: - Public
 
+    public func eventPublisher(
+    ) -> AnyPublisher<PinboardClientEvent, Never> {
+        eventSubject
+            .eraseToAnyPublisher()
+    }
+
     func run<T: Decodable>(
         _ request: URLRequest
     ) -> AnyPublisher<Response<T>, Error> {
-        session
+        eventSubject.send(.loading)
+
+        return session
             .dataTaskPublisher(for: request)
             .tryMap { result in
-                Response(
+                eventSubject.send(.finishedLoading)
+
+                return Response(
                     value: try decoder.decode(
                         T.self,
                         from: result.data
