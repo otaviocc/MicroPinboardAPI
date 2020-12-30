@@ -47,7 +47,7 @@ public protocol PostsAPI {
         fromDate: Date?,
         toDate: Date?,
         meta: Int?
-    ) -> AnyPublisher<RecentResponse, Error>
+    ) -> AnyPublisher<[PostResponse], Error>
 
     /// Returns a list of popular tags and recommended tags for a given URL.
     func suggest(
@@ -140,7 +140,7 @@ extension PinboardAPI: PostsAPI {
         fromDate: Date? = nil,
         toDate: Date? = nil,
         meta: Int? = nil
-    ) -> AnyPublisher<RecentResponse, Error> {
+    ) -> AnyPublisher<[PostResponse], Error> {
         networkClient
             .run(
                 makeAllRequest(
