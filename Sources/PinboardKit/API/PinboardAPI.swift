@@ -33,6 +33,8 @@ public struct PinboardAPI {
                     return .loading
                 case .finishedLoading:
                     return .finishedLoading
+                case .errorLoading:
+                    return .errorLoading
                 }
             }
             .eraseToAnyPublisher()

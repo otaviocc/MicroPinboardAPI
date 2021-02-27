@@ -53,6 +53,10 @@ struct PinboardClient {
                     response: result.response
                 )
             }
+            .mapError{ error -> Error in
+                eventSubject.send(.errorLoading)
+                return error
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
