@@ -5,16 +5,16 @@ public protocol TagsAPI {
 
     /// Returns a full list of the user's tags along with the number of
     /// times they were used.
-    func get(
+    func getPublisher(
     ) -> AnyPublisher<TagsGetResponse, Error>
 
     /// Delete an existing tag.
-    func delete(
+    func deletePublisher(
         tag: String
     ) -> AnyPublisher<GenericResponse, Error>
 
     /// Rename a tag, or fold it in to an existing tag.
-    func rename(
+    func renamePublisher(
         old: String,
         new: String
     ) -> AnyPublisher<GenericResponse, Error>
@@ -24,7 +24,7 @@ extension PinboardAPI: TagsAPI {
 
     // MARK: - Public
 
-    public func get(
+    public func getPublisher(
     ) -> AnyPublisher<TagsGetResponse, Error> {
         networkClient
             .run(makeGetRequest())
@@ -32,7 +32,7 @@ extension PinboardAPI: TagsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func delete(
+    public func deletePublisher(
         tag: String
     ) -> AnyPublisher<GenericResponse, Error> {
         networkClient
@@ -41,7 +41,7 @@ extension PinboardAPI: TagsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func rename(
+    public func renamePublisher(
         old: String,
         new: String
     ) -> AnyPublisher<GenericResponse, Error> {

@@ -4,7 +4,7 @@ import Combine
 public protocol PostsAPI {
 
     /// Add a bookmark.
-    func add(
+    func addPublisher(
         url: URL,
         description: String,
         extended: String?,
@@ -16,12 +16,12 @@ public protocol PostsAPI {
     ) -> AnyPublisher<GenericResponse, Error>
 
     /// Delete a bookmark.
-    func delete(
+    func deletePublisher(
         url: URL
     ) -> AnyPublisher<GenericResponse, Error>
 
     /// Returns one or more posts on a single day matching the arguments.
-    func get(
+    func getPublisher(
         tag: String?,
         date: Date?,
         url: URL?,
@@ -29,18 +29,18 @@ public protocol PostsAPI {
     ) -> AnyPublisher<RecentResponse, Error>
 
     /// Returns a list of dates with the number of posts at each date.
-    func dates(
+    func datesPublisher(
         tag: String?
     ) -> AnyPublisher<DatesResponse, Error>
 
     /// Returns a list of the user's most recent posts, filtered by tag.
-    func recents(
+    func recentsPublisher(
         tag: String?,
         count: Int?
     ) -> AnyPublisher<RecentResponse, Error>
 
     /// Returns all bookmarks in the user's account.
-    func all(
+    func allPublisher(
         tag: String?,
         start: Int?,
         results: Int?,
@@ -50,7 +50,7 @@ public protocol PostsAPI {
     ) -> AnyPublisher<[PostResponse], Error>
 
     /// Returns a list of popular tags and recommended tags for a given URL.
-    func suggest(
+    func suggestPublisher(
         url: URL
     ) -> AnyPublisher<SuggestResponse, Error>
 }
@@ -59,7 +59,7 @@ extension PinboardAPI: PostsAPI {
 
     // MARK: - Public
 
-    public func add(
+    public func addPublisher(
         url: URL,
         description: String,
         extended: String? = nil,
@@ -86,7 +86,7 @@ extension PinboardAPI: PostsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func delete(
+    public func deletePublisher(
         url: URL
     ) -> AnyPublisher<GenericResponse, Error> {
         networkClient
@@ -95,7 +95,7 @@ extension PinboardAPI: PostsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func get(
+    public func getPublisher(
         tag: String? = nil,
         date: Date? = nil,
         url: URL? = nil,
@@ -114,7 +114,7 @@ extension PinboardAPI: PostsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func dates(
+    public func datesPublisher(
         tag: String? = nil
     ) -> AnyPublisher<DatesResponse, Error>  {
         networkClient
@@ -123,7 +123,7 @@ extension PinboardAPI: PostsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func recents(
+    public func recentsPublisher(
         tag: String? = nil,
         count: Int? = nil
     ) -> AnyPublisher<RecentResponse, Error> {
@@ -133,7 +133,7 @@ extension PinboardAPI: PostsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func all(
+    public func allPublisher(
         tag: String? = nil,
         start: Int? = nil,
         results: Int? = nil,
@@ -156,7 +156,7 @@ extension PinboardAPI: PostsAPI {
             .eraseToAnyPublisher()
     }
 
-    public func suggest(
+    public func suggestPublisher(
         url: URL
     ) -> AnyPublisher<SuggestResponse, Error> {
         networkClient

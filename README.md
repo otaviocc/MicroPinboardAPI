@@ -14,7 +14,7 @@ Using the wrapper is straight-forward:
 var cancellables = Set<AnyCancellable>()
 
 apiClient
-    .recents()                       // <- Publisher
+    .recentsPublisher()               // <- Publisher
     .sink(
         receiveCompletion: { _ in },
         receiveValue: { print($0) }
@@ -28,7 +28,7 @@ apiClient
 public protocol PostsAPI {
 
     /// Add a bookmark.
-    func add(
+    func addPublisher(
         url: URL,
         description: String,
         extended: String?,
@@ -40,12 +40,12 @@ public protocol PostsAPI {
     ) -> AnyPublisher<GenericResponse, Error>
 
     /// Delete a bookmark.
-    func delete(
+    func deletePublisher(
         url: URL
     ) -> AnyPublisher<GenericResponse, Error>
 
     /// Returns one or more posts on a single day matching the arguments.
-    func get(
+    func getPublisher(
         tag: String?,
         dt: Date?,
         url: URL?,
@@ -53,18 +53,18 @@ public protocol PostsAPI {
     ) -> AnyPublisher<RecentResponse, Error>
 
     /// Returns a list of dates with the number of posts at each date.
-    func dates(
+    func datesPublisher(
         tag: String?
     ) -> AnyPublisher<DatesResponse, Error>
 
     /// Returns a list of the user's most recent posts, filtered by tag.
-    func recents(
+    func recentsPublisher(
         tag: String?,
         count: Int?
     ) -> AnyPublisher<RecentResponse, Error>
 
     /// Returns all bookmarks in the user's account.
-    func all(
+    func allPublisher(
         tag: String?,
         start: Int?,
         results: Int?,
@@ -74,7 +74,7 @@ public protocol PostsAPI {
     ) -> AnyPublisher<RecentResponse, Error>
 
     /// Returns a list of popular tags and recommended tags for a given URL.
-    func suggest(
+    func suggestPublisher(
         url: URL
     ) -> AnyPublisher<SuggestResponse, Error>
 }
@@ -85,16 +85,16 @@ public protocol TagsAPI {
 
     /// Returns a full list of the user's tags along with the number of
     /// times they were used.
-    func get(
+    func getPublisher(
     ) -> AnyPublisher<TagsGetResponse, Error>
 
     /// Delete an existing tag.
-    func delete(
+    func deletePublisher(
         tag: String
     ) -> AnyPublisher<GenericResponse, Error>
 
     /// Rename a tag, or fold it in to an existing tag.
-    func rename(
+    func renamePublisher(
         old: String,
         new: String
     ) -> AnyPublisher<GenericResponse, Error>
@@ -107,7 +107,7 @@ public protocol UpdateAPI {
     /// Returns the most recent time a bookmark was added, updated or deleted.
     /// Use this before calling posts/all to see if the data has changed since
     /// the last fetch.
-    func update(
+    func updatePublisher(
     ) -> AnyPublisher<UpdateResponse, Error>
 }
 ```

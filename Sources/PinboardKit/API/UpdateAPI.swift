@@ -6,7 +6,7 @@ public protocol UpdateAPI {
     /// Returns the most recent time a bookmark was added, updated or deleted.
     /// Use this before calling posts/all to see if the data has changed since
     /// the last fetch.
-    func update(
+    func updatePublisher(
     ) -> AnyPublisher<UpdateResponse, Error>
 }
 
@@ -16,7 +16,7 @@ extension PinboardAPI: UpdateAPI {
 
     // MARK: - Public
 
-    public func update(
+    public func updatePublisher(
     ) -> AnyPublisher<UpdateResponse, Error> {
         networkClient
             .run(makeUpdateRequest())
