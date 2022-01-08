@@ -1,113 +1,45 @@
 # PinboardKit
 
-PinboardKit is a [Pinboard](https://pinboard.in) [API](https://pinboard.in/api) wrapper, written in Swift using Combine. The main object is `PinboardAPI`, and it can be initialized by passing an optional auth token. The token will be evaluated when building the request.
+PinboardKit is a [Pinboard](https://pinboard.in) [API](https://pinboard.in/api) wrapper, written in Swift using async/wait.
 
 ```swift
-let apiClient = PinboardAPI {
-    "USER:TOKEN"
+public protocol PinboardAPIFactoryProtocol {
+    func makePinboardAPIClient(
+        userToken: @escaping () -> String?
+    ) -> NetworkClientProtocol
 }
 ```
 
-Using the wrapper is straight-forward:
+The network client takes a single parameter: `userToken: @escaping () -> String?`, where the user token is passed to the client and is dynamically evaluated when needed (useful in those case where the network client is initialized before the user is asked to provide the token).
 
 ```swift
-var cancellables = Set<AnyCancellable>()
+let factory = PinboardAPIFactory()
 
-apiClient
-    .recentsPublisher()               // <- Publisher
-    .sink(
-        receiveCompletion: { _ in },
-        receiveValue: { print($0) }
-    )
-    .store(in: &cancellables)
-```
-
-## Publishers
-
-```swift
-public protocol PostsAPI {
-
-    /// Add a bookmark.
-    func addPublisher(
-        url: URL,
-        description: String,
-        extended: String?,
-        tags: String?,
-        dt: Date?,
-        replace: String?,
-        shared: String?,
-        toread: String?
-    ) -> AnyPublisher<GenericResponse, Error>
-
-    /// Delete a bookmark.
-    func deletePublisher(
-        url: URL
-    ) -> AnyPublisher<GenericResponse, Error>
-
-    /// Returns one or more posts on a single day matching the arguments.
-    func getPublisher(
-        tag: String?,
-        dt: Date?,
-        url: URL?,
-        meta: String?
-    ) -> AnyPublisher<RecentResponse, Error>
-
-    /// Returns a list of dates with the number of posts at each date.
-    func datesPublisher(
-        tag: String?
-    ) -> AnyPublisher<DatesResponse, Error>
-
-    /// Returns a list of the user's most recent posts, filtered by tag.
-    func recentsPublisher(
-        tag: String?,
-        count: Int?
-    ) -> AnyPublisher<RecentResponse, Error>
-
-    /// Returns all bookmarks in the user's account.
-    func allPublisher(
-        tag: String?,
-        start: Int?,
-        results: Int?,
-        fromdt: Date?,
-        todt: Date?,
-        meta: Int?
-    ) -> AnyPublisher<RecentResponse, Error>
-
-    /// Returns a list of popular tags and recommended tags for a given URL.
-    func suggestPublisher(
-        url: URL
-    ) -> AnyPublisher<SuggestResponse, Error>
+let client = factory.makePinboardAPIClient {
+    "A_VALID_TOKEN_GOES_HERE"
 }
 ```
 
+Network requests are also built by factories, returning strongly-typed request objects:
+
 ```swift
-public protocol TagsAPI {
+// NetworkRequest<VoidRequest, DatesResponse>
+let recentsRequest = PostsAPIFactory.makeDatesRequest()
+```
 
-    /// Returns a full list of the user's tags along with the number of
-    /// times they were used.
-    func getPublisher(
-    ) -> AnyPublisher<TagsGetResponse, Error>
+The network client takes a single parameter, the `request`, returning `NetworkResponse`
 
-    /// Delete an existing tag.
-    func deletePublisher(
-        tag: String
-    ) -> AnyPublisher<GenericResponse, Error>
-
-    /// Rename a tag, or fold it in to an existing tag.
-    func renamePublisher(
-        old: String,
-        new: String
-    ) -> AnyPublisher<GenericResponse, Error>
+```swift
+public protocol NetworkClientProtocol {
+    func run<RequestModel, ResponseModel>(
+        _ networkRequest: NetworkRequest<RequestModel, ResponseModel>
+    ) async throws -> NetworkResponse<ResponseModel>
 }
 ```
 
-```swift
-public protocol UpdateAPI {
+E.g.:
 
-    /// Returns the most recent time a bookmark was added, updated or deleted.
-    /// Use this before calling posts/all to see if the data has changed since
-    /// the last fetch.
-    func updatePublisher(
-    ) -> AnyPublisher<UpdateResponse, Error>
-}
+```swift
+let recentsRequest = PostsAPIFactory.makeRecentRequest()
+let recentsResponse = try await client.run(recentsRequest)
 ```
