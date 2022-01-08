@@ -12,7 +12,7 @@ let package = Package(
         .library(
             name: "PinboardKit",
             targets: ["PinboardKit"]
-        ),
+        )
     ],
     dependencies: [
         .package(
