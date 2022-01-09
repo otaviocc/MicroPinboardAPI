@@ -1,6 +1,6 @@
 # PinboardKit
 
-PinboardKit is a [Pinboard](https://pinboard.in) [API](https://pinboard.in/api) wrapper, written in Swift using async/wait.
+PinboardKit is a [Pinboard](https://pinboard.in) [API](https://pinboard.in/api) wrapper, written in Swift using async/await.
 
 ```swift
 public protocol PinboardAPIFactoryProtocol {
