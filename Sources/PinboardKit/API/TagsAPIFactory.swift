@@ -1,7 +1,7 @@
 import Foundation
 import MicroClient
 
-public enum PinboardAPI {
+public enum TagsAPIFactory {
 
     /// Returns a full list of the user's tags along with the number of
     /// times they were used.

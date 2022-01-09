@@ -3,7 +3,7 @@ import PinboardKit
 
 final class UpdateAPIFactoryTests: XCTestCase {
 
-    func testMakeCheckFollowingRequest() throws {
+    func testMakeUpdateRequest() throws {
         let request = UpdateAPIFactory.makeUpdateRequest()
 
         XCTAssertEqual(
