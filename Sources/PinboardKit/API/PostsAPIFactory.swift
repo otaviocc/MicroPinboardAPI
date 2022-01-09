@@ -4,7 +4,7 @@ import MicroClient
 public enum PostsAPIFactory {
 
     /// Add a bookmark.
-    public static func addRequest(
+    public static func makeAddRequest(
         url: URL,
         description: String,
         extended: String? = nil,
@@ -54,7 +54,7 @@ public enum PostsAPIFactory {
             path: "/v1/posts/get",
             method: .get,
             parameters: [
-                "rat": tag,
+                "tag": tag,
                 "dt": date.map(DateFormatter.defaultAPIFormatter.string),
                 "url": url?.absoluteString,
                 "meta": meta
