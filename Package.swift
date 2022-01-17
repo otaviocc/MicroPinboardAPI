@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/otaviocc/MicroClient.git",
+            url: "https://github.com/MicroClientSwift/MicroClient",
             from: "0.0.3"
         )
     ],
