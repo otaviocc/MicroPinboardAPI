@@ -1,5 +1,5 @@
 import XCTest
-import PinboardKit
+import MicroPinboard
 
 class PostsAPIFactoryTests: XCTestCase {
 

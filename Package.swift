@@ -4,14 +4,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "PinboardKit",
+    name: "MicroPinboard",
     platforms: [
         .macOS(.v12), .iOS(.v13)
     ],
     products: [
         .library(
-            name: "PinboardKit",
-            targets: ["PinboardKit"]
+            name: "MicroPinboard",
+            targets: ["MicroPinboard"]
         )
     ],
     dependencies: [
@@ -22,12 +22,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "PinboardKit",
+            name: "MicroPinboard",
             dependencies: ["MicroClient"]
         ),
         .testTarget(
-            name: "PinboardKitTests",
-            dependencies: ["PinboardKit", "MicroClient"]
+            name: "MicroPinboardTests",
+            dependencies: ["MicroPinboard", "MicroClient"]
         )
     ]
 )
