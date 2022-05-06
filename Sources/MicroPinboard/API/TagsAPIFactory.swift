@@ -20,8 +20,8 @@ public enum TagsAPIFactory {
         .init(
             path: "/v1/tags/delete",
             method: .get,
-            parameters: [
-                "tag": tag
+            queryItems: [
+                .init(name: "tag", value: "tag")
             ]
         )
     }
@@ -34,9 +34,9 @@ public enum TagsAPIFactory {
         .init(
             path: "/v1/tags/rename",
             method: .get,
-            parameters: [
-                "old": old,
-                "new": new
+            queryItems: [
+                .init(name: "old", value: old),
+                .init(name: "new", value: new),
             ]
         )
     }
