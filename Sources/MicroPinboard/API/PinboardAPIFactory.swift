@@ -61,7 +61,7 @@ public struct PinboardAPIFactory: PinboardAPIFactoryProtocol {
             session: .shared,
             defaultDecoder: .defaultJSONDecoder,
             defaultEncoder: JSONEncoder(),
-            baseURL: URL(string: "api.pinboard.in")!
+            baseURL: URL(string: "https://api.pinboard.in")!
         )
     }
 }
