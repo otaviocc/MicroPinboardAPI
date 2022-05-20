@@ -21,7 +21,7 @@ public enum TagsAPIFactory {
             path: "/v1/tags/delete",
             method: .get,
             queryItems: [
-                .init(name: "tag", value: "tag")
+                .init(name: "tag", value: tag)
             ]
         )
     }

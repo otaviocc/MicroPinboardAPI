@@ -391,7 +391,7 @@ class PostsAPIFactoryTests: XCTestCase {
         XCTAssertTrue(
             try XCTUnwrap(
                 request.queryItems?.contains(
-                    URLQueryItem(name: "fromdt", value: "0000-01-01")
+                    URLQueryItem(name: "fromdt", value: "0001-01-01")
                 )
             )
         )
