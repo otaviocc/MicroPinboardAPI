@@ -17,15 +17,15 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/add",
             method: .get,
-            parameters: [
-                "url": url.absoluteString,
-                "description": description,
-                "extended": extended,
-                "tags": tags,
-                "dt": date.map(DateFormatter.defaultAPIFormatter.string),
-                "replace": replace,
-                "shared": shared,
-                "toread": toread
+            queryItems: [
+                .init(name: "url", value: url.absoluteString),
+                .init(name: "description", value: description),
+                .init(name: "extended", value: extended),
+                .init(name: "tags", value: tags),
+                .init(name: "dt", value: date.map(DateFormatter.defaultAPIFormatter.string)),
+                .init(name: "replace", value: replace),
+                .init(name: "shared", value: shared),
+                .init(name: "toread", value: toread)
             ]
         )
     }
@@ -37,8 +37,8 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/delete",
             method: .get,
-            parameters: [
-                "url": url.absoluteString
+            queryItems: [
+                .init(name: "url", value: url.absoluteString)
             ]
         )
     }
@@ -53,11 +53,11 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/get",
             method: .get,
-            parameters: [
-                "tag": tag,
-                "dt": date.map(DateFormatter.defaultAPIFormatter.string),
-                "url": url?.absoluteString,
-                "meta": meta
+            queryItems: [
+                .init(name: "tag", value: tag),
+                .init(name: "dt", value: date.map(DateFormatter.defaultAPIFormatter.string)),
+                .init(name: "url", value: url?.absoluteString),
+                .init(name: "meta", value: meta)
             ]
         )
     }
@@ -69,8 +69,8 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/dates",
             method: .get,
-            parameters: [
-                "tag": tag
+            queryItems: [
+                .init(name: "tag", value: tag)
             ]
         )
     }
@@ -83,9 +83,9 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/recent",
             method: .get,
-            parameters: [
-                "tag": tag,
-                "count": count.map(String.init)
+            queryItems: [
+                .init(name: "tag", value: tag),
+                .init(name: "count", value: count.map(String.init))
             ]
         )
     }
@@ -102,13 +102,13 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/all",
             method: .get,
-            parameters: [
-                "tag": tag,
-                "start": start.map(String.init),
-                "results": results.map(String.init),
-                "fromdt": fromDate.map(DateFormatter.defaultAPIFormatter.string),
-                "todt": toDate.map(DateFormatter.defaultAPIFormatter.string),
-                "meta": meta.map(String.init)
+            queryItems: [
+                .init(name: "tag", value: tag),
+                .init(name: "start", value: start.map(String.init)),
+                .init(name: "results", value: results.map(String.init)),
+                .init(name: "fromdt", value: fromDate.map(DateFormatter.defaultAPIFormatter.string)),
+                .init(name: "todt", value: toDate.map(DateFormatter.defaultAPIFormatter.string)),
+                .init(name: "meta", value: meta.map(String.init)),
             ]
         )
     }
@@ -120,8 +120,8 @@ public enum PostsAPIFactory {
         .init(
             path: "/v1/posts/suggest",
             method: .get,
-            parameters: [
-                "url": url.absoluteString
+            queryItems: [
+                .init(name: "url", value: url.absoluteString)
             ]
         )
     }

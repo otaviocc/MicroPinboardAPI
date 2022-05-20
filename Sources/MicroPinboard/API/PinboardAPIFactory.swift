@@ -59,10 +59,9 @@ public struct PinboardAPIFactory: PinboardAPIFactoryProtocol {
     ) -> NetworkConfiguration {
         .init(
             session: .shared,
-            defaultDecoder: JSONDecoder.defaultJSONDecoder,
+            defaultDecoder: .defaultJSONDecoder,
             defaultEncoder: JSONEncoder(),
-            scheme: "https",
-            hostname: "api.pinboard.in"
+            baseURL: URL(string: "api.pinboard.in")!
         )
     }
 }
