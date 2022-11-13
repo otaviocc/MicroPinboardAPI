@@ -36,7 +36,7 @@ class TagsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "tag", value: "foobar")
                 )
             )
@@ -64,7 +64,7 @@ class TagsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "new", value: "new_name")
                 )
             )
@@ -72,7 +72,7 @@ class TagsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "old", value: "old_name")
                 )
             )

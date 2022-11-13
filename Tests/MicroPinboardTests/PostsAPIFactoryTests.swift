@@ -20,7 +20,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "url", value: "http://some.fake.url")
                 )
             )
@@ -28,7 +28,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "description", value: "some description")
                 )
             )
@@ -61,13 +61,13 @@ class PostsAPIFactoryTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            request.queryItems?.count,
+            request.queryItems.count,
             8
         )
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "url", value: "http://some.fake.url")
                 )
             )
@@ -75,7 +75,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "description", value: "some description")
                 )
             )
@@ -83,7 +83,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "extended", value: "some extended info")
                 )
             )
@@ -91,7 +91,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "tags", value: "tag0 tag1 tag2")
                 )
             )
@@ -99,7 +99,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "replace", value: "replace?")
                 )
             )
@@ -107,7 +107,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "shared", value: "yes")
                 )
             )
@@ -115,7 +115,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "toread", value: "no")
                 )
             )
@@ -123,7 +123,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "dt", value: "4001-01-01")
                 )
             )
@@ -150,7 +150,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "url", value: "http://some.fake.url")
                 )
             )
@@ -196,13 +196,13 @@ class PostsAPIFactoryTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            request.queryItems?.count,
+            request.queryItems.count,
             4
         )
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "tag", value: "tag1")
                 )
             )
@@ -210,7 +210,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "url", value: "http://some.fake.url")
                 )
             )
@@ -218,7 +218,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "dt", value: "4001-01-01")
                 )
             )
@@ -226,7 +226,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "meta", value: "some meta")
                 )
             )
@@ -252,13 +252,13 @@ class PostsAPIFactoryTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            request.queryItems?.count,
+            request.queryItems.count,
             1
         )
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "tag", value: "tag1")
                 )
             )
@@ -302,13 +302,13 @@ class PostsAPIFactoryTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            request.queryItems?.count,
+            request.queryItems.count,
             2
         )
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "tag", value: "tag1")
                 )
             )
@@ -316,7 +316,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "count", value: "10")
                 )
             )
@@ -360,13 +360,13 @@ class PostsAPIFactoryTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            request.queryItems?.count,
+            request.queryItems.count,
             6
         )
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "tag", value: "tag1")
                 )
             )
@@ -374,7 +374,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "start", value: "10")
                 )
             )
@@ -382,7 +382,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "results", value: "20")
                 )
             )
@@ -390,15 +390,15 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
-                    URLQueryItem(name: "fromdt", value: "0001-01-01")
+                request.queryItems.contains(
+                    URLQueryItem(name: "fromdt", value: "0000-01-01")
                 )
             )
         )
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "todt", value: "4001-01-01")
                 )
             )
@@ -406,7 +406,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "meta", value: "15")
                 )
             )
@@ -433,7 +433,7 @@ class PostsAPIFactoryTests: XCTestCase {
 
         XCTAssertTrue(
             try XCTUnwrap(
-                request.queryItems?.contains(
+                request.queryItems.contains(
                     URLQueryItem(name: "url", value: "http://some.fake.url")
                 )
             )
